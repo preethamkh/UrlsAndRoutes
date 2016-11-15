@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using System.Web.Mvc.Routing.Constraints;
 
 namespace UrlsAndRoutes
 {
@@ -22,7 +23,13 @@ namespace UrlsAndRoutes
             //Route myRoute = new Route("{controller}/{action}", new MvcRouteHandler());
             //routes.Add("MyRoute", myRoute);
 
+            routes.MapRoute("ShopSchema", "Shop/OldAction", new { Controller = "Home", Action = "Index" });
+
             routes.MapRoute("MyRoute", "{controller}/{action}");
+
+            routes.MapRoute("", "Public/{controller}/{action}");
+
+            routes.MapRoute("MyRoute2", "{controller}/{action}/{id}", new { Controller = "Home", Action = "Index", id = UrlParameter.Optional }, new { Controller = "^H.*", Action = "^Index$|^About$", HttpMethodConstraint = "GET", id = new  RangeRouteConstraint(10 ,20)}, new[] { "UrlsAndRoutes.AddtionalControllers" });
         }
     }
 }
