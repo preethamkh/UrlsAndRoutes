@@ -4,15 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace UrlsAndRoutes.AdditionalControllers
+namespace UrlsAndRoutes.Areas.Admin.Controllers
 {
     public class HomeController : Controller
     {
+        // GET: Admin/Home
         public ActionResult Index()
         {
-            ViewBag.Controller = "Additional Controllers - Home";
-            ViewBag.Action = "Index";
-            return View("ActionName");
+            return View();
         }
     }
 }

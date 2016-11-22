@@ -23,13 +23,24 @@ namespace UrlsAndRoutes
             //Route myRoute = new Route("{controller}/{action}", new MvcRouteHandler());
             //routes.Add("MyRoute", myRoute);
 
-            routes.MapRoute("ShopSchema", "Shop/OldAction", new { Controller = "Home", Action = "Index" });
+            //routes.MapRoute("ShopSchema", "Shop/OldAction", new { Controller = "Home", Action = "Index" });
 
-            routes.MapRoute("MyRoute", "{controller}/{action}");
+            //routes.MapRoute("MyRoute", "{controller}/{action}");
 
-            routes.MapRoute("", "Public/{controller}/{action}");
+            //routes.MapRoute("", "Public/{controller}/{action}");
 
-            routes.MapRoute("MyRoute2", "{controller}/{action}/{id}", new { Controller = "Home", Action = "Index", id = UrlParameter.Optional }, new { Controller = "^H.*", Action = "^Index$|^About$", HttpMethodConstraint = "GET", id = new  RangeRouteConstraint(10 ,20)}, new[] { "UrlsAndRoutes.AddtionalControllers" });
+            //routes.MapRoute("MyRoute2", "{controller}/{action}/{id}", new { Controller = "Home", Action = "Index", id = UrlParameter.Optional }, new { Controller = "^H.*", Action = "^Index$|^About$", HttpMethodConstraint = "GET", id = new  RangeRouteConstraint(10 ,20)}, new[] { "UrlsAndRoutes.AddtionalControllers" });
+            routes.RouteExistingFiles = true;
+            routes.MapMvcAttributeRoutes();
+            routes.IgnoreRoute("Content/{filename}.html");
+
+            //routes.MapRoute("MyRoute", "{controller}/{action}/{id}", new {
+            //    Controller = "Home", Action = "Index",
+            //    id = UrlParameter.Optional
+            //});
+
+            routes.MapRoute("MyRoute", "{controller}/{action}", null, new[] { "UrlsAndRoutes.Controllers" });
+            routes.MapRoute("MyOtherRoute", "App/{action}", new { Controller = "Home" }, new[] { "UrlsAndRoutes.Controllers" });
         }
     }
 }
